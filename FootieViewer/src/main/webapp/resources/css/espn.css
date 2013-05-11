@@ -1,0 +1,22 @@
+
+#header
+{
+	background-image:url(../img/header_bg.png);
+	background-repeat:repeat-x;
+	height:55px;
+	border-bottom:1px solid #000;
+	white-space:nowrap;
+	min-width:850px;
+}
+
+#playerinput
+{
+	font-size:8pt;
+	font-family:tahoma;
+	margin-top:14px;
+	margin-left:20px;
+	padding-left:12px;
+	padding-top:2px;
+	width:210px;
+	height:17px;
+}
