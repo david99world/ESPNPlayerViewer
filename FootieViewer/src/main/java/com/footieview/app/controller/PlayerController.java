@@ -17,7 +17,7 @@ import com.footieview.app.service.PlayerService;
 @Controller
 public class PlayerController {
 	@Autowired PlayerService playerService;
-//	private static final Logger logger = LoggerFactory.getLogger(PlayerController.class);
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */

@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.footieview.app.entity.Player;
@@ -22,13 +24,15 @@ public class PlayerImportDaoImpl implements PlayerImportDao {
 	private static final String API_KEY = "KEY";
 	private static final String API_URL = "http://api.espn.com/v1/sports/soccer/eng.1/athletes?apikey=";
 
+	private static final Logger logger = Logger.getLogger(PlayerImportDaoImpl.class);
+	
 	@Autowired
 	private PlayerService playerService;
 
 	@Override
 	@PostConstruct
 	public void importPlayers() {
-		System.out.println("*****importing players");
+		logger.log(Level.INFO, "Importing players from webservice");
 		final List<Player> players = new LinkedList<>();
 		for (int offset = 1; offset < 650; offset = offset + 50) {
 			try {
@@ -48,7 +52,7 @@ public class PlayerImportDaoImpl implements PlayerImportDao {
 							.getAsString());
 					players.add(player);
 				}
-
+				//This is required as there's some anti-throttle code on the side of ESPN API
 				Thread.sleep(150);
 			} catch (Exception e) {
 				e.printStackTrace();

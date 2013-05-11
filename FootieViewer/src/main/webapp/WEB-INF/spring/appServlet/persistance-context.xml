@@ -12,8 +12,8 @@
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<beans:property name="url"
 			value="jdbc:mysql://localhost/footieviewer" />
-		<beans:property name="username" value="root" />
-		<beans:property name="password" value="toor" />
+		<beans:property name="username" value="footie" />
+		<beans:property name="password" value="football" />
 	</beans:bean>
 
 	<beans:bean id="sessionFactory"

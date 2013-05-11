@@ -2,6 +2,8 @@ package com.footieview.app.dao;
 
 import java.util.List;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,6 +15,8 @@ public class PlayerDaoImpl implements PlayerDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	private static final Logger logger = Logger.getLogger(PlayerDaoImpl.class);
+	
 	@Override
 	public Player getByUuid(String uuid) {
 		return (Player) sessionFactory.getCurrentSession().get(Player.class,
@@ -36,7 +40,7 @@ public class PlayerDaoImpl implements PlayerDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Player> getByName(String name) {
-		
+		logger.log(Level.DEBUG, "Searching for : " + name);
 		return (List<Player>) sessionFactory
 				.getCurrentSession()
 				.createQuery(

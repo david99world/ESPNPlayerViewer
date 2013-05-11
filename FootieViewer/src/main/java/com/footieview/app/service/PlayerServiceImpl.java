@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.footieview.app.dao.PlayerDao;
 import com.footieview.app.entity.Player;
 
-
 @Service("playerService")
 public class PlayerServiceImpl implements PlayerService {
 
