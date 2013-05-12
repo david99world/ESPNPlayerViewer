@@ -23,7 +23,7 @@ public class PlayerServiceImpl implements PlayerService {
 
 	@Override
 	@Transactional
-	public void addPlayer(Player player) {
+	public void addPlayer(final Player player) {
 		playerDao.addPlayer(player);
 	}
 
@@ -36,14 +36,14 @@ public class PlayerServiceImpl implements PlayerService {
 
 	@Override
 	@Transactional
-	public List<Player> getByName(String name) {
+	public List<Player> getByName(final String name) {
 		return playerDao.getByName(name);
 	}
 
 
 	@Override
 	@Transactional
-	public void addAllPlayers(List<Player> players) {
+	public void addAllPlayers(final List<Player> players) {
 		playerDao.addAllPlayers(players);
 	}
 

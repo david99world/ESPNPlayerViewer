@@ -21,11 +21,12 @@ import com.google.gson.JsonParser;
 
 public class PlayerImportDaoImpl implements PlayerImportDao {
 
-	private static final String API_KEY = "KEY";
+	private static final String API_KEY = "yg62vtf964xjmf37vk9muunf";
 	private static final String API_URL = "http://api.espn.com/v1/sports/soccer/eng.1/athletes?apikey=";
 
-	private static final Logger logger = Logger.getLogger(PlayerImportDaoImpl.class);
-	
+	private static final Logger logger = Logger
+			.getLogger(PlayerImportDaoImpl.class);
+
 	@Autowired
 	private PlayerService playerService;
 
@@ -40,26 +41,29 @@ public class PlayerImportDaoImpl implements PlayerImportDao {
 				for (final JsonElement athleteJsonElement : athletes) {
 					JsonObject athleteJsonObject = athleteJsonElement
 							.getAsJsonObject();
-					final Player player = new Player();
-					player.setEspnId(athleteJsonObject.get("id").getAsInt());
-					player.setFirstName(athleteJsonObject.get("firstName")
-							.getAsString());
-					player.setLastName(athleteJsonObject.get("lastName")
-							.getAsString());
-					player.setEspnUrl(athleteJsonObject.get("links")
-							.getAsJsonObject().get("web").getAsJsonObject()
-							.get("athletes").getAsJsonObject().get("href")
-							.getAsString());
+					final Player player = buildPlayer(athleteJsonObject);
 					players.add(player);
 				}
-				//This is required as there's some anti-throttle code on the side of ESPN API
+				// This is required as there's some anti-throttle code on the
+				// side of ESPN API
 				Thread.sleep(150);
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.error("Error importing players", e);
 			}
 		}
 		playerService.addAllPlayers(players);
 
+	}
+
+	private Player buildPlayer(final JsonObject athleteJsonObject) {
+		final Player player = new Player();
+		player.setEspnId(athleteJsonObject.get("id").getAsInt());
+		player.setFirstName(athleteJsonObject.get("firstName").getAsString());
+		player.setLastName(athleteJsonObject.get("lastName").getAsString());
+		player.setEspnUrl(athleteJsonObject.get("links").getAsJsonObject()
+				.get("web").getAsJsonObject().get("athletes").getAsJsonObject()
+				.get("href").getAsString());
+		return player;
 	}
 
 	private static JsonArray getAthletesJsonArray(final int offset)

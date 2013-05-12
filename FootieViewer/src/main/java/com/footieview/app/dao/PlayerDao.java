@@ -6,6 +6,7 @@ import com.footieview.app.entity.Player;
 
 
 public interface PlayerDao {
+	
 	public Player getByUuid(String uuid);
 	public List<Player> getByName(String name);
 	public void addPlayer(Player player);
