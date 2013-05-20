@@ -14,12 +14,12 @@ public class PlayerServiceImpl implements PlayerService {
 
 	@Autowired
 	private PlayerDao playerDao;
-	
+
 	@Override
+	@Transactional(readOnly=true)
 	public Player getByUuid(final String uuid) {
 		return playerDao.getByUuid(uuid);
 	}
-	
 
 	@Override
 	@Transactional
@@ -28,14 +28,13 @@ public class PlayerServiceImpl implements PlayerService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Player> getAll() {
 		return playerDao.getAll();
 	}
 
-
 	@Override
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Player> getByName(final String name) {
 		return playerDao.getByName(name);
 	}
