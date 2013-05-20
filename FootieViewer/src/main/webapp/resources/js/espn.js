@@ -13,7 +13,7 @@ function playerSearch(e, q) {
 	var searchString = escape(q);
 	var $tbl = $('div#results table');
 	$('tr:gt(0)', $tbl).remove(); // remove any old results
-	if (q.length < 2) {
+	if (q.length < 1) {
 		return;
 	}
 	$.getJSON("getPlayers?playerName=" + searchString, {}, function(response) {
