@@ -21,7 +21,7 @@ import com.google.gson.JsonParser;
 
 public class PlayerImportDaoImpl implements PlayerImportDao {
 
-	private static final String API_KEY = "yg62vtf964xjmf37vk9muunf";
+	private static final String API_KEY = "KEY";
 	private static final String API_URL = "http://api.espn.com/v1/sports/soccer/eng.1/athletes?apikey=";
 
 	private static final Logger logger = Logger
