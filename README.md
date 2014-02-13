@@ -1,10 +1,6 @@
 ESPNPlayerViewer
 ================
 
-All the code for www.playerviewer.com
-
-----------------
-
 First make sure you've changed the database credentials in persistance-context.xml.
 
 Secondly, you'll need to get a key for the ESPN API.  This'll need to go into
